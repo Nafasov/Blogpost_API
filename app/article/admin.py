@@ -6,14 +6,7 @@ from .models import (
     Article,
     Comment,
     Content,
-    Author
 )
-
-
-@admin.register(Author)
-class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('name',)
 
 
 class ContentAdminTabularInline(admin.TabularInline):
@@ -37,7 +30,6 @@ class ArticleAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'title')
-    search_fields = ('search',)
 
 
 @admin.register(Tags)
@@ -48,11 +40,6 @@ class TagsAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'article', 'name', 'top_level_comment_id', 'get_image', 'created_date')
-    search_fields = ('name',)
+    list_display = ('id', 'author', 'article', 'top_level_comment_id', 'created_date')
     list_per_page = 7
 
-
-@admin.register(Content)
-class ContentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'article')
