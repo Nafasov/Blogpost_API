@@ -9,7 +9,7 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
-    def create_superuser(self, username, password=None, **extra_fields):
+    def create_superuser(self, username, password, **extra_fields):
         user = self.create_user(username, password, **extra_fields)
         user.is_staff = True
         user.is_superuser = True
@@ -20,7 +20,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=255, unique=True)
-    email = models.EmailField(max_length=255, unique=True)
+    email = models.EmailField(max_length=255)
     first_name = models.CharField(max_length=221, null=True, blank=True)
     last_name = models.CharField(max_length=221, null=True, blank=True)
     avatar = models.ImageField(upload_to='users/', null=True, blank=True)
@@ -31,8 +31,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.email
+        return self.username
 
     USERNAME_FIELD = 'username'
+    EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = UserManager()

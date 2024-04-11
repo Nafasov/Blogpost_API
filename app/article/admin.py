@@ -18,9 +18,8 @@ class ContentAdminTabularInline(admin.TabularInline):
 class ArticleAdmin(admin.ModelAdmin):
     inlines = (ContentAdminTabularInline,)
     list_display = ('id', 'author', 'title', 'slug', 'created_date')
-    search_fields = ('title', 'author__username')
+    search_fields = ('title', 'author')
     list_filter = ('created_date',)
-    autocomplete_fields = ('author',)
     date_hierarchy = 'created_date'
     filter_horizontal = ('tags',)
     readonly_fields = ('slug', 'created_date', 'modified_date')

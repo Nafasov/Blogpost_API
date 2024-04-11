@@ -22,7 +22,7 @@ class Tags(models.Model):
 
 class Article(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='articles')
     tags = models.ManyToManyField(Tags, )
     title = models.CharField(max_length=255)
     slug = models.SlugField(editable=True, )
