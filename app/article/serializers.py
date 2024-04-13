@@ -24,7 +24,7 @@ class TagsSerializer(serializers.ModelSerializer):
 
 class ArticleSerializer(serializers.ModelSerializer):
     tags = TagsSerializer(many=True, read_only=True)
-    category = CategorySerializer(red_only=True)
+    category = CategorySerializer()
     author = UserSerializer(read_only=True)
 
     class Meta:
