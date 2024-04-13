@@ -5,3 +5,9 @@ app_name = 'contact'
 urlpatterns = [
 
 ]
+
+'''
+    Contact
+        -list
+        -create
+'''
