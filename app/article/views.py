@@ -1,4 +1,4 @@
-from django_filters.rest_framework.backends import DjangoFilterBackend
+from django_filters import rest_framework
 from rest_framework import filters
 from rest_framework import generics
 
@@ -34,8 +34,8 @@ class TagsAPIView(generics.ListAPIView):
 class ArticleAPIView(generics.ListAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    filter_backends = (DjangoFilterBackend, filters.SearchFilter)
-    filter_fields = ('category', 'tags')
+    filter_backends = [rest_framework.DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['tags', 'category']
     search_fields = ('title', 'author__username')
 
 
