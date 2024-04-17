@@ -74,4 +74,3 @@ class CommentAPIView(generics.ListCreateAPIView):
         article_id = self.kwargs.get('article_id')
         context["article_id"] = article_id
         return context
-
